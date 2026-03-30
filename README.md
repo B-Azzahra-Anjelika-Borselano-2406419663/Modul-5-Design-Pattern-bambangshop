@@ -56,7 +56,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [v] Commit: `Implement add function in Subscriber repository.`
     -   [v] Commit: `Implement list_all function in Subscriber repository.`
     -   [v] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [v] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,11 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. In the BambangShop case, using a single Subscriber struct is sufficient for the current implementation because all subscribers share the same behavior, namely receiving notifications through HTTP requests to a /receive endpoint. Unlike the general Observer pattern where different observers may implement different update() logic, here the variation lies only in the data (such as the URL), not in behavior. Therefore, introducing a trait would add unnecessary complexity at this stage. However, from a design perspective, a trait could still be beneficial if the system is expected to evolve—for example, to support multiple notification channels like email or messaging services—since it would allow new subscriber types to be added without modifying existing code.  
+
+2. While Vec can store a collection of subscribers, it does not enforce uniqueness or provide efficient lookup. Since id in Program and url in Subscriber are intended to be unique, using a map structure like DashMap is more appropriate because it naturally enforces unique keys and allows faster access, insertion, and deletion. Therefore, compared to a list, a map/dictionary structure is better suited for this requirement.  
+
+3. The Singleton pattern ensures that only one instance of a resource exists, but it does not inherently provide thread safety. In Rust, especially for a shared static variable like SUBSCRIBERS accessed across threads, thread safety is crucial. DashMap is specifically designed to handle concurrent access safely without requiring manual locking. Therefore, even if a Singleton pattern is applied, we would still need a thread-safe data structure like DashMap (or another synchronization mechanism), meaning Singleton alone is not sufficient.  
 
 #### Reflection Publisher-2
 
