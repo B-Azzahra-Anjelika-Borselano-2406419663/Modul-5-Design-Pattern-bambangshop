@@ -48,7 +48,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [v] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
     -   [v] Commit: `Create Subscriber model struct.`
     -   [v] Commit: `Create Notification model struct.`
@@ -58,7 +58,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [v] Commit: `Implement delete function in Subscriber repository.`
     -   [v] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
+    -   [v] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
     -   [ ] Commit: `Implement subscribe function in Notification controller.`
     -   [ ] Commit: `Implement unsubscribe function in Notification service.`
