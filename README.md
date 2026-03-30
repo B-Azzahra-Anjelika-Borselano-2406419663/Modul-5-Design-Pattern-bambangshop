@@ -63,7 +63,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [v] Commit: `Implement subscribe function in Notification controller.`
     -   [v] Commit: `Implement unsubscribe function in Notification service.`
     -   [v] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [v] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -84,5 +84,10 @@ This is the place for you to write reflections:
 3. The Singleton pattern ensures that only one instance of a resource exists, but it does not inherently provide thread safety. In Rust, especially for a shared static variable like SUBSCRIBERS accessed across threads, thread safety is crucial. DashMap is specifically designed to handle concurrent access safely without requiring manual locking. Therefore, even if a Singleton pattern is applied, we would still need a thread-safe data structure like DashMap (or another synchronization mechanism), meaning Singleton alone is not sufficient.  
 
 #### Reflection Publisher-2
+1. Separating “Service” and “Repository” from the Model helps enforce the Single Responsibility Principle and improves maintainability. If the Model handles both business logic and data access, it becomes tightly coupled to storage mechanisms and harder to modify or test. By introducing a Repository layer, data access logic (e.g., database queries or storage handling) is isolated, while the Service layer focuses on business rules and application flow. This separation makes the system more modular, easier to test, and more flexible if the storage implementation changes in the future.
+
+2. If we only use the Model, each model (Program, Subscriber, Notification) would need to handle its own data storage, business logic, and interactions with other models. This would lead to high coupling, where models directly depend on each other’s internal logic. For example, Program might directly manage subscriber lists and notification sending, while Subscriber might include logic for communication handling. As a result, the code becomes harder to maintain, more complex, and prone to duplication, since responsibilities are not clearly separated. Over time, changes in one model could easily break others, increasing the overall complexity of the system.
+
+3. Postman is very helpful for testing APIs in the BambangShop project because it allows us to send HTTP requests (GET, POST, DELETE, etc.) and inspect responses without needing a frontend. This makes it easier to verify endpoints like creating products, subscribing users, or triggering notifications. Some features that are useful include Collections (to organize and reuse requests), Environment Variables (to manage different configurations like base URLs), and automated testing scripts (to validate responses). These features help streamline testing, improve consistency, and are very beneficial.
 
 #### Reflection Publisher-3
