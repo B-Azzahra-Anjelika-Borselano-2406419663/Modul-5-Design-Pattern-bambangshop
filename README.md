@@ -69,7 +69,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [v] Commit: `Implement notify function in Notification service to notify each Subscriber.`
     -   [v] Commit: `Implement publish function in Program service and Program controller.`
     -   [v] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [v] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -91,3 +91,8 @@ This is the place for you to write reflections:
 3. Postman is very helpful for testing APIs in the BambangShop project because it allows us to send HTTP requests (GET, POST, DELETE, etc.) and inspect responses without needing a frontend. This makes it easier to verify endpoints like creating products, subscribing users, or triggering notifications. Some features that are useful include Collections (to organize and reuse requests), Environment Variables (to manage different configurations like base URLs), and automated testing scripts (to validate responses). These features help streamline testing, improve consistency, and are very beneficial.
 
 #### Reflection Publisher-3
+1. In this BambangShop case, we are using the Push model of the Observer pattern. The main app (publisher) directly sends notification data through HTTP requests to each subscriber’s /receive endpoint whenever an event occurs (e.g., product created, deleted, or promoted). This means subscribers passively receive all relevant information without needing to request it themselves.
+
+2. If we instead used the Pull model, subscribers would only receive a minimal notification (or trigger) and then request detailed data from the publisher. The advantage is that subscribers have more control over what data they retrieve, which can reduce unnecessary data transfer if they only need partial information. However, the disadvantage in this case is increased complexity: subscribers must implement additional logic to fetch data, and the system would generate extra HTTP requests, potentially increasing latency and load on the server. For BambangShop, where notifications are straightforward, the Pull model would likely be less efficient and more complicated than necessary.
+
+3. If we do not use multi-threading in the notification process, the program will send notifications to subscribers sequentially. This means if one subscriber is slow or unresponsive, it will delay notifications to all other subscribers. As the number of subscribers grows, this can significantly increase response time and reduce system performance. In the worst case, the entire notification process could become a bottleneck, making the application feel slow or unresponsive, especially during high activity.
